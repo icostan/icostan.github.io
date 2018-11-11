@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Bitcoin: transaction"
-date:   2018-11-11 18:52:28 +0300
+date:   2018-11-11 15:10:28 +0300
 categories: bitcoin
 ---
 # The hard way - Bitcoin: Transaction
