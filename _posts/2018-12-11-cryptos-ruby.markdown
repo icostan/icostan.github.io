@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  "Release: Cryptos-ruby project"
+title:  "Introducing Cryptos-ruby project"
 date:   2018-12-11 09:19:28 +0200
 ---
-# Release: Cryptos-ruby project
+# Cryptos-ruby: The easiest way to craft your own transactions
 
 I just want to announce the very first release [v0.0.3] of Cryptos-ruby project, a simple and very easy to use Ruby API to  manipulate multiple crypto coins.
 
