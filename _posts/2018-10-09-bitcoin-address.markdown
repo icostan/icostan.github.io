@@ -69,7 +69,7 @@ ruby> k.to_s 16
 
 ### 1. Public key
 
-Now, public key is just a scalar multiplication of private key (k) and elliptic curve generator point (G) as `P = k * G`. The result is another point `(x, y)` on elliptic curve, we take that `x` coordinate, prefix it with `02` if `y` is positive or `03` if `y` is negative and there it is, the public key in compressed format.
+Now, public key is just a scalar multiplication of private key (k) and elliptic curve generator point (G) as `P = k * G`. The result is another point `(x, y)` on elliptic curve, we take that `x` coordinate, prefix it with `02` if `y` is even or `03` if `y` is odd and there it is, the public key in compressed format.
 
 A little bit of math and a few [algorithms](https://en.wikipedia.org/wiki/Elliptic_curve_point_multiplication) that we need to use for this calculation. For scalar multiplication you can add `G` to itself `k` number of times but this will be very inefficient so we are going to use "double and add" algorithm implemented in `ec_multiply` that in turn uses `ec_add` and `ec_double`, addition and doubling operations on elliptic curves. And last, since division is not defined over finite fields we need to multiply by the `multiplicative inverse` and use `extended_euclidean_algorithm` to find the greatest common divisor.
 
@@ -131,7 +131,7 @@ end
 ```ruby
 ruby> Px, Py = ec_multiply(k, Gx, Gy, p)
  => [36422191471907241029883925342251831624200921388586025344128047678873736520530, 20277110887056303803699431755396003735040374760118964734768299847012543114150]
-ruby> P = "#{Py > 0 ? '02' : '03'}#{Px.to_s(16)}"
+ruby> P = "#{Py.even? ? '02' : '03'}#{Px.to_s(16)}"
  => "0250863ad64a87ae8a2fe83c1af1a8403cb53f53e486d8511dad8a04887e5b2352"
 ```
 
