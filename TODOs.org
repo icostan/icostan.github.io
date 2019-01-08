@@ -1,0 +1,8 @@
+* Posts                                                                :POST:
+** DONE write 2018 review
+   CLOSED: [2019-01-02 Wed] SCHEDULED: <2019-01-02 Wed>
+** TODO digital signature schemas (Schnorr, Threshold, Ring, Thring, etc)
+** TODO encryption / decryption (RSA, ?)
+** TODO open source Actihunt
+** TODO deribit and bitmex libraries
+** TODO organize projects with org-mode/agenda
