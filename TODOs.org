@@ -4,5 +4,7 @@
 ** TODO digital signature schemas (Schnorr, Threshold, Ring, Thring, etc)
 ** TODO encryption / decryption (RSA, ?)
 ** TODO open source Actihunt
-** TODO deribit and bitmex libraries
+** TODO deribit libraries
+** DONE bitmex libraries
+   CLOSED: [2019-02-02 Sat] SCHEDULED: <2019-02-02 Sat>
 ** TODO organize projects with org-mode/agenda
