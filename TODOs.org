@@ -1,13 +1,16 @@
 * Posts                                                                :POST:
 ** DONE write 2018 review
    CLOSED: [2019-01-02 Wed] SCHEDULED: <2019-01-02 Wed>
-** TODO digital signature schemas (Schnorr, Threshold, Ring, Thring, etc)
-** TODO encryption / decryption with RSA
+** signature schemas (Schnorr, Threshold, Ring)
+** encryption / decryption with RSA
 ** TODO open source Actihunt
 ** TODO deribit-api-ruby library
 ** deribit-api-elixir
 ** DONE bitmex-api-ruby library
    CLOSED: [2019-02-02 Sat] SCHEDULED: <2019-02-02 Sat>
 ** bitmex mobile app
-** TODO organize projects with org-mode/agenda
-** add Google analytics
+** organize projects with org-mode/agenda
+** TODO add Google analytics
+** Pedersen vs. ElGamal commitments
+** Schnorr vs. Threshold signature aggregations
+** literate blogging with Nikola/Hugo

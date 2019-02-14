@@ -2,6 +2,7 @@
 layout: post
 title:  "Idiomatic Ruby library for BitMEX API"
 date:   2019-01-28 15:06:28 +0200
+tags: [bitmex bitcoin api ruby]
 ---
 # Bitmex-api-ruby
 

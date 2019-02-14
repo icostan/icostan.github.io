@@ -2,6 +2,7 @@
 layout: post
 title:  "Introducing Cryptos-ruby project"
 date:   2018-12-11 09:19:28 +0200
+tags: [bitcoin litecoin cryptography crypto math]
 ---
 # Cryptos-ruby: The easiest way to craft your own transactions
 
