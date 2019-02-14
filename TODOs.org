@@ -3,7 +3,8 @@
    CLOSED: [2019-01-02 Wed] SCHEDULED: <2019-01-02 Wed>
 ** signature schemas (Schnorr, Threshold, Ring)
 ** encryption / decryption with RSA
-** TODO open source Actihunt
+** DONE open source Actihunt
+   CLOSED: [2019-02-14 Thu] SCHEDULED: <2019-02-14 Thu>
 ** TODO deribit-api-ruby library
 ** deribit-api-elixir
 ** DONE bitmex-api-ruby library
