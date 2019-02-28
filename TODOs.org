@@ -1,7 +1,7 @@
 * Posts                                                                :POST:
 ** DONE write 2018 review
    CLOSED: [2019-01-02 Wed] SCHEDULED: <2019-01-02 Wed>
-** signature schemas (Schnorr, Threshold, Ring)
+** signature schemas (RSA, Schnorr, Threshold, Ring)
 ** encryption / decryption with RSA
 ** DONE open source Actihunt
    CLOSED: [2019-02-14 Thu] SCHEDULED: <2019-02-14 Thu>
@@ -13,8 +13,9 @@
 ** organize projects with org-mode/agenda
 ** DONE add Google analytics
    CLOSED: [2019-02-28 Thu] SCHEDULED: <2019-02-28 Thu>
-** Pedersen vs. ElGamal commitments
+** TODO Homomorphic encryption: Pedersen vs. ElGamal commitments
 ** Schnorr vs. Threshold signature aggregations
 ** literate blogging with Nikola/Hugo
 ** DONE Week/Day close tradingview indicator
    CLOSED: [2019-02-28 Thu] SCHEDULED: <2019-02-28 Thu>
+** TODO add comments

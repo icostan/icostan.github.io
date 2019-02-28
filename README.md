@@ -4,4 +4,4 @@
 
 ## The hard way, the easy way
 
-Just another personal blog powered by Jekyll and deployed on Netlify.
+Just another personal blog powered by Jekyll and Netlify.
