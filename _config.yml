@@ -16,7 +16,7 @@
 title: The hard way, the easy way
 email: blog@iuliancostan.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Sometimes I feel that I don't really understand basic or high level concepts
+  Sometimes I feel that I don't really understand high level concepts
   and I like to dig deeper into the unknown to get better touch of low level implementations.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://blog.iuliancostan.com" # the base hostname & protocol for your site, e.g. http://example.com
@@ -29,6 +29,12 @@ markdown: kramdown
 theme: minima
 plugins:
   - jekyll-feed
+  - jekyll-analytics
+
+jekyll_analytics:
+  GoogleAnalytics:          # Add, if you want to track with Google Analytics
+    id: UA-354095-4         # Required - replace with your tracking id
+    anonymizeIp: false      # Optional - Default: false - set to true for anonymized tracking
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list

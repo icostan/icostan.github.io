@@ -9,9 +9,10 @@
 ** deribit-api-elixir
 ** DONE bitmex-api-ruby library
    CLOSED: [2019-02-02 Sat] SCHEDULED: <2019-02-02 Sat>
-** bitmex mobile app
+** TODO bitmex mobile app
 ** organize projects with org-mode/agenda
-** TODO add Google analytics
+** DONE add Google analytics
+   CLOSED: [2019-02-28 Thu] SCHEDULED: <2019-02-28 Thu>
 ** Pedersen vs. ElGamal commitments
 ** Schnorr vs. Threshold signature aggregations
 ** literate blogging with Nikola/Hugo
