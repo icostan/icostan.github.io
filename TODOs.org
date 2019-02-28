@@ -15,3 +15,5 @@
 ** Pedersen vs. ElGamal commitments
 ** Schnorr vs. Threshold signature aggregations
 ** literate blogging with Nikola/Hugo
+** DONE Week/Day close tradingview indicator
+   CLOSED: [2019-02-28 Thu] SCHEDULED: <2019-02-28 Thu>
