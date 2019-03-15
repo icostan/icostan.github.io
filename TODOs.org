@@ -19,3 +19,9 @@
 ** DONE Week/Day close tradingview indicator
    CLOSED: [2019-02-28 Thu] SCHEDULED: <2019-02-28 Thu>
 ** TODO add comments
+** DONE wakatime reports
+   CLOSED: [2019-03-14 Thu] SCHEDULED: <2019-03-14 Thu>
+** runkeeper reports
+** cryptographic trap-doors
+** homomorphic encryption
+** zero-knowledge proofs
