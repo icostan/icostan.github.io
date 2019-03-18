@@ -1,0 +1,182 @@
+#+EXPORT_FILE_NAME: 2019-03-16-rsa
+#+OPTIONS: toc:nil
+#+OPTIONS: -:nil
+
+:FRONTMATTER:
+---
+layout: post
+title:  "ELI5 Cryptography: RSA"
+date:   2019-03-16 13:59:28 +0200
+tags: [cryptography rsa primes factorization eli5]
+---
+:END:
+
+* Overview
+
+#+begin_src txt
+  "If you can't explain it simply, you don't understand it well enough" - Einstein
+#+end_src
+
+[[https://en.wikipedia.org/wiki/RSA_(cryptosystem)][RSA]] (Rivest-Shamir-Adleman) needs no introduction, it is well known and most used public-key cryptosystem that governs our digital lives.
+
+Here is my take, a simple implementation in 10 lines of Ruby code that is neither the best implementation nor the most efficient one but is enough for the purpose of this article.
+
+#+begin_src ruby -n
+  p = 7
+  q = 11
+  n = p * q
+  phi = (p-1) * (q-1)
+  gcd = ->(a, b) { while(b != 0) do r, a = a % b, b; b = r end; a }
+  e = (2..phi).find{|i| gcd.call(i, phi) == 1 }
+  d = (2..phi).find{|i| (i * e) % phi == 1 }
+  m = 6
+  c = m**e % n
+  message = c**d % n
+  "Decrypted message: #{message}" if m == message
+#+end_src
+
+#+RESULTS:
+: Decrypted message: 6
+
+Except lines #5 that involves an algorithm and a while loop, everything else is mid-school math and `**` is the exponentiation operator.
+
+The curious minds please read simple explanations below.
+
+* Integer factorization trapdoor
+
+The very first thing to do is to choose 2 prime numbers, `p` and `q`:
+
+#+name: p-block
+#+begin_src ruby -n
+p = 7
+#+end_src
+
+#+name: q-block
+#+begin_src ruby +n
+q = 11
+#+end_src
+
+Next, let's multiply the two numbers:
+
+#+name: n-block
+#+begin_src ruby +n :var p=p-block q=q-block
+  n = p * q
+#+end_src
+
+#+RESULTS: n-block
+: 77
+
+Now it's time to define our first function `phi`:
+
+#+name: phi-block
+#+begin_src ruby +n :var p=p-block q=q-block
+  phi = (p-1) * (q-1)
+#+end_src
+
+#+RESULTS: phi-block
+: 60
+
+Which is [Euler's totient function](https://en.wikipedia.org/wiki/Euler%27s_totient_function) defined as number of integers less than `n` that are [[https://en.wikipedia.org/wiki/Coprime_integers][coprime]] with `n` and has two interesting properties:
+- the function is multiplicative and `phi(a*b) = phi(a) * phi(b)`
+- if `n` is a prime number then `phi(n) = n - 1`
+
+And finally we have the [[https://en.wikipedia.org/wiki/Trapdoor_function][cryptographic trapdoor]] which is the most important primitive to understand. Trapdoors are based on asymmetric computation that is easy to do in one direction but it is very difficult to calculate in the opposite direction.
+
+In our case, if one (an attacker) does not know the initial `p` and `q` prime numbers it will be very hard to calculate the `phi` because [[https://en.wikipedia.org/wiki/Integer_factorization][integer factorization]]  of `n` is known to be infeasible to calculate for very large numbers.
+
+* Message encryption
+
+Now it's time to define our first algorithm, `gcd` which is the [greatest common divisor](https://en.wikipedia.org/wiki/Greatest_common_divisor) and is defined as the largest positive integer that divides both `a` and `b`.
+
+If single-liner [[(GCD)]] looks scary then here is the formatted version of the [[https://en.wikipedia.org/wiki/Euclidean_algorithm][Euclid's algorithm]].
+
+#+begin_src ruby
+  def gcd(a, b)
+    while(b != 0) do
+      r = a % b
+      a = b
+      b = r
+    end
+    a
+  end
+#+end_src
+
+The `e` key below is the encryption key and is defined as the smallest value for which `gcd(e, phi) == 1` is true.
+To keep things simple we will just brute-force and find `e` but keep in mind that this will be very inefficient for large numbers.
+
+#+name: e-block
+#+begin_src ruby +n :var phi=phi-block
+  gcd = ->(a, b) { while(b != 0) do r, a = a % b, b; b = r end; a } (ref:gcd)
+  e = (2..phi).find{|i| gcd.call(i, phi) == 1}
+#+end_src
+
+#+RESULTS: e-block
+: 7
+
+Message encryption is modulo exponentiation of the message `m` and the encryption key `e`.
+
+#+name: c-block
+#+begin_src ruby +n :var e=e-block n=n-block
+  m = 6
+  c = m**e % n
+#+end_src
+
+#+RESULTS: c-block
+: 41
+
+* Message decryption
+
+The `d` key below is the decryption key and is defined as [[https://en.wikipedia.org/wiki/Multiplicative_inverse][multiplicative inverse]] of `e` over [[https://en.wikipedia.org/wiki/Finite_field][finite field]] `phi`. Simply put `e * d mod phi = 1`.
+
+Again we will just brute-force and calculate the inverse but there are better algorithms to do this, like [[https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm][Extended Euclidean algorithm]].
+
+ #+name: d-block
+ #+begin_src ruby +n :var n=n-block e=e-block phi=phi-block
+   d = (2..phi).find{|i| (e * i) % phi == 1}
+ #+end_src
+
+ #+RESULTS: d-block
+ : 43
+
+Message decryption is another modulo exponentiation using the encrypted cipher `c` and decryption key `d`:
+
+#+name: m-block
+#+BEGIN_SRC ruby +n :var c=c-block d=d-block n=n-block
+  message = c**d % n
+#+END_SRC
+
+#+RESULTS: m-block
+
+BINGO! You can try it yourself but I can bet that `m = message = 6`
+
+* Intuition
+
+At first sight it looks like magic right? but if you reason about it, it's very easy.
+
+Starting backwards, with the decryption/encryption formulas:
+
+#+begin_src math -n
+m = c^d mod n
+c = m^e mod n
+#+end_src
+
+Let's substitute #2 in #1:
+
+#+begin_src math
+m = (m^e)^d mod n
+#+end_src
+
+Exponentials Power Rule says that `(a^b)^c == a^(b*c)` and we also know that `d` is the multiplicative inverse of `e`, guess what is the value of the resulting exponent? :)
+
+#+begin_src math
+m = m^(e*d mod phi) mod p
+#+end_src
+
+If the intuition is valid then the following expression stands true, where 7 is `e` and 43 is `d` in our little example:
+
+#+begin_src ruby
+ 'YOU ARE A CRYPTOSTAR!!!' if 6 == 6**(7 * 43 % 60) % 77
+#+end_src
+
+#+RESULTS:
+: YOU ARE A CRYPTOSTAR!!!
