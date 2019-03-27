@@ -2,10 +2,10 @@
 ** Posts
 *** DONE write 2018 review
     CLOSED: [2019-01-02 Wed] SCHEDULED: <2019-01-02 Wed>
-*** signature schemas (Schnorr, Threshold, Ring)
+*** signature aggregation schemas (Schnorr, Threshold, Ring)
 *** DONE open source Actihunt
     CLOSED: [2019-02-14 Thu] SCHEDULED: <2019-02-14 Thu>
-*** TODO deribit-api-ruby library
+*** deribit-api-ruby library
 *** deribit-api-elixir
 *** DONE bitmex-api-ruby library
     CLOSED: [2019-02-02 Sat] SCHEDULED: <2019-02-02 Sat>
@@ -23,10 +23,6 @@
     - exporting to multiple formats
 *** DONE Week/Day close tradingview indicator
     CLOSED: [2019-02-28 Thu] SCHEDULED: <2019-02-28 Thu>
-*** TODO add comments
-*** DONE Wakatime reports
-    CLOSED: [2019-03-14 Thu] SCHEDULED: <2019-03-14 Thu>
-*** Runkeeper reports
 *** cryptographic trap-doors
 *** homomorphic encryption
 *** zero-knowledge proofs
@@ -35,6 +31,10 @@
 *** personal finance with Ledger
 *** DONE ElGamal encryption scheme
     CLOSED: [2019-03-27 Wed 15:18] SCHEDULED: <2019-03-26 Tue>
+   :LOGBOOK:
+   CLOCK: [2019-03-27 Wed 11:14]--[2019-03-27 Wed 15:17] => 4:03
+   :END:
+*** TODO NTRU lattice-based encryption scheme
 ** Fixes
 *** add Euler's method to RSA
 *** add tags to all posts
@@ -42,16 +42,16 @@
     CLOSED: [2019-03-26 Tue]
 *** use naming conventions: p - prime, m - message, c - cipher, t - trapdoor
 *** use latex formulas
+*** links with ' sign
 ** Tasks
-*** migrate blog to Nikola/Hugo
-*** TODO [#A] write new blog
+*** DONE Wakatime reports
+    CLOSED: [2019-03-14 Thu] SCHEDULED: <2019-03-14 Thu>
+*** Runkeeper reports
+*** TODO add comments
+*** TODO migrate blog to Nikola/Hugo
+*** TODO write new blog
     SCHEDULED: <2019-04-04 Thu +2w>
     :PROPERTIES:
     :LAST_REPEAT: [2019-03-27 Wed 15:16]
     :END:
     - State "DONE"       from "TODO"       [2019-03-27 Wed 15:16]
-   :LOGBOOK:
-   :END:
-   :PROPERTIES:
-   :STYLE:    habit
-   :END:
