@@ -1,34 +1,57 @@
-* Posts                                                                :POST:
-** DONE write 2018 review
-   CLOSED: [2019-01-02 Wed] SCHEDULED: <2019-01-02 Wed>
-** signature schemas (Schnorr, Threshold, Ring)
-** encryption / decryption with RSA
-** DONE open source Actihunt
-   CLOSED: [2019-02-14 Thu] SCHEDULED: <2019-02-14 Thu>
-** TODO deribit-api-ruby library
-** deribit-api-elixir
-** DONE bitmex-api-ruby library
-   CLOSED: [2019-02-02 Sat] SCHEDULED: <2019-02-02 Sat>
-** TODO bitmex mobile app
-** organize projects with org-mode/agenda
-** DONE add Google analytics
-   CLOSED: [2019-02-28 Thu] SCHEDULED: <2019-02-28 Thu>
-** TODO Homomorphic encryption: Pedersen vs. ElGamal commitments
-** Schnorr vs. Threshold signature aggregations
-** literate blogging with Nikola/Hugo
-   - evaluate block inline
-   - counting lines
-   - pass results between blocks
-   - edit block's content in native buffer
-   - exporting to multiple formats
-** DONE Week/Day close tradingview indicator
-   CLOSED: [2019-02-28 Thu] SCHEDULED: <2019-02-28 Thu>
-** TODO add comments
-** DONE wakatime reports
-   CLOSED: [2019-03-14 Thu] SCHEDULED: <2019-03-14 Thu>
-** runkeeper reports
-** cryptographic trap-doors
-** homomorphic encryption
-** zero-knowledge proofs
-** DONE RSA signature scheme
-   CLOSED: [2019-03-18 Mon] SCHEDULED: <2019-03-15 Fri>
+* TODOs                                                                 :BLOG:
+** Posts
+*** DONE write 2018 review
+    CLOSED: [2019-01-02 Wed] SCHEDULED: <2019-01-02 Wed>
+*** signature schemas (Schnorr, Threshold, Ring)
+*** DONE open source Actihunt
+    CLOSED: [2019-02-14 Thu] SCHEDULED: <2019-02-14 Thu>
+*** TODO deribit-api-ruby library
+*** deribit-api-elixir
+*** DONE bitmex-api-ruby library
+    CLOSED: [2019-02-02 Sat] SCHEDULED: <2019-02-02 Sat>
+*** bitmex mobile app
+*** organize projects with org-mode/agenda
+*** DONE add Google analytics
+    CLOSED: [2019-02-28 Thu] SCHEDULED: <2019-02-28 Thu>
+*** Homomorphic commitments: Pedersen vs. ElGamal
+*** Schnorr vs. Threshold signature aggregations
+*** literate blogging with Orgmode
+    - evaluate block inline
+    - counting lines
+    - pass results between blocks
+    - edit block's content in native buffer
+    - exporting to multiple formats
+*** DONE Week/Day close tradingview indicator
+    CLOSED: [2019-02-28 Thu] SCHEDULED: <2019-02-28 Thu>
+*** TODO add comments
+*** DONE Wakatime reports
+    CLOSED: [2019-03-14 Thu] SCHEDULED: <2019-03-14 Thu>
+*** Runkeeper reports
+*** cryptographic trap-doors
+*** homomorphic encryption
+*** zero-knowledge proofs
+*** DONE RSA encryption scheme
+    CLOSED: [2019-03-18 Mon] SCHEDULED: <2019-03-15 Fri>
+*** personal finance with Ledger
+*** DONE ElGamal encryption scheme
+    CLOSED: [2019-03-27 Wed 15:18] SCHEDULED: <2019-03-26 Tue>
+** Fixes
+*** add Euler's method to RSA
+*** add tags to all posts
+*** DONE use session for Python src blocks
+    CLOSED: [2019-03-26 Tue]
+*** use naming conventions: p - prime, m - message, c - cipher, t - trapdoor
+*** use latex formulas
+** Tasks
+*** migrate blog to Nikola/Hugo
+*** TODO [#A] write new blog
+    SCHEDULED: <2019-04-04 Thu +2w>
+    :PROPERTIES:
+    :LAST_REPEAT: [2019-03-27 Wed 15:16]
+    :END:
+    - State "DONE"       from "TODO"       [2019-03-27 Wed 15:16]
+   :LOGBOOK:
+   :END:
+   :PROPERTIES:
+   :STYLE:    habit
+   :END:

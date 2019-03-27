@@ -1,34 +1,178 @@
-# terms and functions
-additive inverse: a + (-a) mod p = 1
+#+EXPORT_FILE_NAME: 2019-03-26-elgamal
+#+OPTIONS: toc:nil
+#+OPTIONS: -:nil
 
-# key generation
-p = 7
-g = 5
-k = 9
-y = g^k mod p = 5^9 mod 7 = 6
+:FRONTMATTER:
+---
+layout: post
+title:  "ELI5: Cryptography - ElGamal"
+date:   2019-03-26 13:07:28 +0200
+tags: [cryptography elgamal discrete logarithm eli5]
+---
+:END:
 
-# message encryption
-m = 6
-r = 10
-a = g^r mod p = 5^10 mod 7 = 2
-b = y^r * m mod p = 4^10 * 6 mod 7 = 3
+* Overview
 
-# message decryption
-message = b/a^k mod p = 3 / 2^8 mod 7 =
+#+begin_src txt
+  "If you can't explain it simply, you don't understand it well enough" - Einstein
+#+end_src
 
-#+BEGIN_SRC ruby
+ElGamal is a public key cryptosystem that is used in [[https://en.wikipedia.org/wiki/ElGamal_encryption][encryption]] , [[https://en.wikipedia.org/wiki/ElGamal_signature_scheme][digital signature]] and homomorphic cryptography.
+
+Here is my take in 12 lines of Python code:
+
+#+begin_src python -n :results output :exports output
   p = 7
-  g = 5
+  g = [x for x in range(1, p) if len(set([x**i % p for i in range(1, p)])) == p-1][0]
   k = 4
-  y = g**k % p
+  t = g**k % p
   m = 6
-  r = 3
-  a = g**r % p
-  b = (y**r * m) % p
+  import random
+  r = random.randint(1, p-1)
+  c1 = g**r % p
+  c2 = (t**r * m) % p
   inv_k = p - 1 - k
-  inv_a = a**inv_k % p
-  message = b * inv_a % p
-#+END_SRC
+  inv_c1 = c1**inv_k % p
+  message = c2 * inv_c1 % p
+  print "YOU ARE A CRYPTOSTAR!" if message == m else "ERROR"
+#+end_src
 
 #+RESULTS:
-: 6
+: YOU ARE A CRYPTOSTAR!
+
+Besides line #2 that involves an algorithm to find the generator `g` and line #10 that calculates the additive inverse of private key `k`, everything else is just modular multiplication and exponentiation.
+
+Interested in more details and line by line explanations? please read on.
+
+* Discrete logarithm trapdoor
+
+First thing first, lets pick a prime number:
+
+#+name: p-block
+#+begin_src python -n :session elgamal
+  p = 7
+#+end_src
+
+#+RESULTS: p-block
+
+For the prime number above we need to find the generator `g` that defines a [[https://en.wikipedia.org/wiki/Cyclic_group][cyclic group]] which in theory is a little bit involved but in simple terms the generator is a specific number that returns unique values for each exponent between `1` and `p-1` where `p-1` is called the order of the cyclic group.
+
+Lets take a few examples and see how it looks like: pick `2` as generator:
+
+#+begin_src python :results output :exports both :session elgamal
+  print [2**i % p for i in range(1, p)]
+#+end_src
+
+#+RESULTS:
+: [2, 4, 1, 2, 4, 1]
+:
+:
+
+We can easily see that returning values are not unique, lets pick `3` as generator:
+
+#+begin_src python :results output :exports both :session elgamal
+  print [3**i % p for i in range(1, p)]
+#+end_src
+
+#+RESULTS:
+: [1, 3, 2, 6, 4, 5]
+:
+:
+
+BINGO! returning values are unique and we've found our generator.
+
+The line below is just a brute force algorithm that finds multiple generators of order `p-1` but only takes the first one that is found.
+
+#+name: g-block
+#+begin_src python +n :session elgamal
+  g = [x for x in range(1, p) if len(set([x**i % p for i in range(1, p)])) == p-1][0]
+#+end_src
+
+#+RESULTS: g-block
+
+Now is time to pick a private key `k` between `1` and `p-1`, execute the trapdoor function and calculate `t` value:
+
+#+name: ky-block
+#+begin_src python +n :session elgamal
+  k = 4
+  t = g**k % p
+#+end_src
+
+The line #4 is the secret sauce of ElGamal cryptography, the trapdoor function called [[https://en.wikipedia.org/wiki/Discrete_logarithm][*the discrete logarithm*]] which says that for given `g` and `t` values it is *infeasible* to calculate the private key `k` when working with very large numbers.
+
+#+RESULTS: ky-block
+
+The `p, g and t` form the public key and will be used in encryption below, while `k` is kept secret.
+
+* Message encryption
+
+`m` is the message that we want to encrypt and `r` is a random number between `1` and `p-1`:
+
+#+name: ab-block
+#+begin_src python +n :session elgamal
+  m = 6
+  import random
+  r = random.randint(1, p-1)
+  c1 = g**r % p
+  c2 = (t**r * m) % p
+#+end_src
+
+#+RESULTS: ab-block
+
+`c1, c2` are the encrypted ciphers that will be used to decrypt the original message.
+
+* Message decryption
+
+To decrypt the original message we need apply the following formula:
+
+`message = c2 / c1^k mod p`
+
+The problem is that division is not an operation defined for finite fields but multiplication is and we can re-write it using multiplication / exponentiation operations only:
+
+`message = c2 * c1^inv_k mod p`
+
+`inv_k` is called [[https://en.wikipedia.org/wiki/Additive_inverse][additive inverse]]  of `k` over [[https://en.wikipedia.org/wiki/Finite_field][finite field]] 'p' where `k + inv_k mod p = 0` is valid.
+We can brute force and find it but there is a simpler way: if `k < p` (which it is) then `inv_k = p - 1 - k`.
+
+#+begin_src python +n :session elgamal :results output :exports both
+  inv_k = p - 1 - k
+  inv_c1 = c1**inv_k % p
+  message = c2 * inv_c1 % p
+  print "YOU ARE A CRYPTOSTAR!" if message == m else "ERROR"
+#+end_src
+
+#+RESULTS:
+: YOU ARE A CRYPTOSTAR!
+:
+:
+
+* Intuition
+
+Why this magic works the way it works?
+
+#+begin_src python -n :results output :session elgamal
+  message == (c2 * inv_c1) % p
+  message == (c2 * c1**(p-1-k)) % p
+  message == (t**r * m * (g**r)**(p-1-k)) % p
+  message == ((g**k)**r * m * (g**r)**(p-1-k)) % p
+  message == (g**(k*r) * m * (g**(r*(p-1-k)))) % p
+  message == (g**(k*r) * m * g**(r*(p-1)) * g**(-r*k)) % p
+#+end_src
+
+Lets do the math backwards:
+1. start with last decryption formula and substitute inverses `inv_c1` and `inv_k`
+2. substitute ciphers `c1` and `c2`
+3. substitute trapdoor `t`
+4. apply exponentiation power rule `(a^b)^c = a^(b*c)`
+5. distribute the exponent `r`
+6. - `g**(r*(p-1))` is 1 because of [[https://en.wikipedia.org/wiki/Euler%2527s_theorem][Euler's theorem]] and [[https://en.wikipedia.org/wiki/Lagrange%2527s_theorem_(group_theory)][Lagrange's theorem]]
+   - `g**(k*r)` terms reduces each other
+
+Check if the intuition is valid by substituting with numbers: generator `g` is 3, private key `k` is 4, random number `r` is 5 and message `m` is 6:
+
+#+begin_src python :exports both :results output
+  print "MAGIC" if 6 == (3**(4*5) * 6 * 3**(5*(7-1)) * 3**(-5*4)) % 7 else "ERROR"
+#+end_src
+
+#+RESULTS:
+: MAGIC
