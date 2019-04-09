@@ -34,7 +34,13 @@
    :LOGBOOK:
    CLOCK: [2019-03-27 Wed 11:14]--[2019-03-27 Wed 15:17] => 4:03
    :END:
-*** TODO NTRU lattice-based encryption scheme
+*** NTRU lattice-based encryption scheme
+*** DONE ECDSA signature scheme
+    CLOSED: [2019-04-09 Tue 17:12]
+    :LOGBOOK:
+    CLOCK: [2019-04-09 Tue 11:37]--[2019-04-09 Tue 17:12] =>  5:35
+    CLOCK: [2019-04-07 Sun 07:48]--[2019-04-07 Sun 18:45] => 10:57
+    :END:
 ** Fixes
 *** add Euler's method to RSA
 *** add tags to all posts
@@ -43,15 +49,17 @@
 *** use naming conventions: p - prime, m - message, c - cipher, t - trapdoor
 *** use latex formulas
 *** links with ' sign
+*** use org citation, references
 ** Tasks
-*** DONE Wakatime reports
+*** DONE Wakatime reports=B$9
     CLOSED: [2019-03-14 Thu] SCHEDULED: <2019-03-14 Thu>
 *** Runkeeper reports
 *** TODO add comments
 *** TODO migrate blog to Nikola/Hugo
 *** TODO write new blog
-    SCHEDULED: <2019-04-04 Thu +2w>
+    SCHEDULED: <2019-04-18 Thu +2w>
     :PROPERTIES:
-    :LAST_REPEAT: [2019-03-27 Wed 15:16]
+    :LAST_REPEAT: [2019-04-09 Tue 17:12]
     :END:
+    - State "DONE"       from "TODO"       [2019-04-09 Tue 17:12]
     - State "DONE"       from "TODO"       [2019-03-27 Wed 15:16]
