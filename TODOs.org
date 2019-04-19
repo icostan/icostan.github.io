@@ -54,10 +54,9 @@
 *** DONE Wakatime reports=B$9
     CLOSED: [2019-03-14 Thu] SCHEDULED: <2019-03-14 Thu>
 *** Runkeeper reports
-*** TODO add comments
-*** TODO migrate blog to Nikola/Hugo
-*** TODO write new blog
-    SCHEDULED: <2019-04-18 Thu +2w>
+*** add comments
+*** migrate blog to Nikola/Hugo
+*** write new blog
     :PROPERTIES:
     :LAST_REPEAT: [2019-04-09 Tue 17:12]
     :END:

@@ -1,4 +1,9 @@
-# icostan.github.io
+---
+layout: post
+title: MOVED TO GITLAB
+date:   2019-04-19
+tags: [blog migration gitlab hugo]
+---
 
 I've moved to Gitlab, no more posts, please visit:
 
