@@ -4,4 +4,4 @@ title: About
 permalink: /about/
 ---
 
-Moved to [blog.costan.ro](http://blog.costan.ro)
+Moved to [https://blog.costan.ro](https://blog.costan.ro)

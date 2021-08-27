@@ -6,4 +6,4 @@ I've moved to Gitlab, no more posts, please visit:
 
 - [https://gitlab.com/icostan/icostan.gitlab.io](https://gitlab.com/icostan/icostan.gitlab.io)
 
-- [blog.costan.ro](http://blog.costan.ro)
+- [https://blog.costan.ro](https://blog.costan.ro)
